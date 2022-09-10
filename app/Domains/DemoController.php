@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Domains;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DemoController extends Controller
 {

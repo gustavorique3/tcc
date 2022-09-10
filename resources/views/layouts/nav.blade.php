@@ -24,14 +24,14 @@
                     <span class="nav-link-text">Tables</span>
                 </a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cadastros">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-wrench"></i>
-                    <span class="nav-link-text">Components</span>
+                    <span class="nav-link-text">Cadastros</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseComponents">
                     <li>
-                        <a href="{{ url('/admin/navbar') }}">Navbar</a>
+                        <a href="{{ url('/categorias') }}">Categorias</a>
                     </li>
                     <li>
                         <a href="{{ url('/admin/cards') }}">Cards</a>
