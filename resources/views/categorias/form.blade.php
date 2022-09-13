@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-12">
-                                <label for="descricao">Nome Categoria</label>
+                                <label for="descricao">Nome</label>
                                 <input class="form-control" name="descricao" id="descricao" type="text" aria-describedby="Categoria" placeholder="Nome da categoria" value="{{ $categoria->descricao }}">
                             </div>
                         </div>

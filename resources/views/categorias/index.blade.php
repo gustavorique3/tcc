@@ -8,25 +8,25 @@
             <li class="breadcrumb-item">
                 <a href="{{ route('demo') }}">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Tables</li>
+            <li class="breadcrumb-item active">Categorias</li>
         </ol>
-        <a class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5" href="{{ route('categorias.create') }}">
-                                          <i class="ti-plus"></i>Adicionar
-                                      </a>
+        <a class="btn btn-primary btn-success btn-lg btn-flat btn-addon m-b-10 m-l-5" href="{{ route('categorias.create') }}">
+                                          <i class="ti-plus"></i>+ Adicionar Categoria
+                                        </a>
         <!-- Example DataTables Card-->
-        <div class="card mb-3">
+        <div class="card mb-3 my-3">
             <div class="card-header">
-                <i class="fa fa-table"></i> Data Table Example
+                <h4><i class="fa fa-table"></i> Listagem de Categorias</h4>
             </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <h4>Listagem de Categorias </h4>
+                        <!-- <h4>Listagem de Categorias </h4> -->
                         @if(count($categorias))
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Descricao</th>
+                                    <th>Nome</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
@@ -53,7 +53,7 @@
                         @endif
                     </div>
                 </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            <div class="card-footer small text-muted"></div>
         </div>
     </div>
 </div>

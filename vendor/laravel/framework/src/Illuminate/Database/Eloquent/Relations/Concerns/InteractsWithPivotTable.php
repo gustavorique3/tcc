@@ -133,7 +133,7 @@ trait InteractsWithPivotTable
     {
         return collect($records)->mapWithKeys(function ($attributes, $id) {
             if (! is_array($attributes)) {
-                list($id, $attributes) = [$attributes, []];
+                [$id, $attributes] = [$attributes, []];
             }
 
             return [$id => $attributes];
@@ -188,7 +188,7 @@ trait InteractsWithPivotTable
             $attributes = $this->addTimestampsToAttachment($attributes, true);
         }
 
-        $updated = $this->newPivotStatementForId($id)->update(
+        $updated = $this->newPivotStatementForId($this->parseId($id))->update(
             $this->castAttributes($attributes)
         );
 
@@ -258,7 +258,7 @@ trait InteractsWithPivotTable
      */
     protected function formatAttachRecord($key, $value, $attributes, $hasTimestamps)
     {
-        list($id, $attributes) = $this->extractAttachIdAndAttributes($key, $value, $attributes);
+        [$id, $attributes] = $this->extractAttachIdAndAttributes($key, $value, $attributes);
 
         return array_merge(
             $this->baseAttachRecord($id, $hasTimestamps), $this->castAttributes($attributes)
@@ -474,11 +474,11 @@ trait InteractsWithPivotTable
     protected function parseIds($value)
     {
         if ($value instanceof Model) {
-            return [$value->getKey()];
+            return [$value->{$this->relatedKey}];
         }
 
         if ($value instanceof Collection) {
-            return $value->modelKeys();
+            return $value->pluck($this->relatedKey)->all();
         }
 
         if ($value instanceof BaseCollection) {
@@ -486,6 +486,17 @@ trait InteractsWithPivotTable
         }
 
         return (array) $value;
+    }
+
+    /**
+     * Get the ID from the given mixed value.
+     *
+     * @param  mixed  $value
+     * @return mixed
+     */
+    protected function parseId($value)
+    {
+        return $value instanceof Model ? $value->{$this->relatedKey} : $value;
     }
 
     /**

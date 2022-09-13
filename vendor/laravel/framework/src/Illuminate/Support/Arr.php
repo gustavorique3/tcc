@@ -385,7 +385,7 @@ class Arr
     {
         $results = [];
 
-        list($value, $key) = static::explodePluckParameters($value, $key);
+        [$value, $key] = static::explodePluckParameters($value, $key);
 
         foreach ($array as $item) {
             $itemValue = data_get($item, $value);
@@ -541,11 +541,20 @@ class Arr
      * Shuffle the given array and return the result.
      *
      * @param  array  $array
+     * @param  int|null  $seed
      * @return array
      */
-    public static function shuffle($array)
+    public static function shuffle($array, $seed = null)
     {
-        shuffle($array);
+        if (is_null($seed)) {
+            shuffle($array);
+        } else {
+            srand($seed);
+
+            usort($array, function () {
+                return rand(-1, 1);
+            });
+        }
 
         return $array;
     }

@@ -21,20 +21,25 @@ final class ArgumentMetadataFactory implements ArgumentMetadataFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function createArgumentMetadata($controller)
+    public function createArgumentMetadata($controller): array
     {
-        $arguments = array();
+        $arguments = [];
 
-        if (is_array($controller)) {
+        if (\is_array($controller)) {
             $reflection = new \ReflectionMethod($controller[0], $controller[1]);
-        } elseif (is_object($controller) && !$controller instanceof \Closure) {
-            $reflection = (new \ReflectionObject($controller))->getMethod('__invoke');
+            $class = $reflection->class;
+        } elseif (\is_object($controller) && !$controller instanceof \Closure) {
+            $reflection = new \ReflectionMethod($controller, '__invoke');
+            $class = $reflection->class;
         } else {
             $reflection = new \ReflectionFunction($controller);
+            if ($class = str_contains($reflection->name, '{closure}') ? null : $reflection->getClosureScopeClass()) {
+                $class = $class->name;
+            }
         }
 
         foreach ($reflection->getParameters() as $param) {
-            $arguments[] = new ArgumentMetadata($param->getName(), $this->getType($param), $param->isVariadic(), $param->isDefaultValueAvailable(), $param->isDefaultValueAvailable() ? $param->getDefaultValue() : null, $param->allowsNull());
+            $arguments[] = new ArgumentMetadata($param->getName(), $this->getType($param, $class), $param->isVariadic(), $param->isDefaultValueAvailable(), $param->isDefaultValueAvailable() ? $param->getDefaultValue() : null, $param->allowsNull());
         }
 
         return $arguments;
@@ -42,17 +47,23 @@ final class ArgumentMetadataFactory implements ArgumentMetadataFactoryInterface
 
     /**
      * Returns an associated type to the given parameter if available.
-     *
-     * @param \ReflectionParameter $parameter
-     *
-     * @return null|string
      */
-    private function getType(\ReflectionParameter $parameter)
+    private function getType(\ReflectionParameter $parameter, ?string $class): ?string
     {
         if (!$type = $parameter->getType()) {
-            return;
+            return null;
+        }
+        $name = $type instanceof \ReflectionNamedType ? $type->getName() : (string) $type;
+
+        if (null !== $class) {
+            switch (strtolower($name)) {
+                case 'self':
+                    return $class;
+                case 'parent':
+                    return get_parent_class($class) ?: null;
+            }
         }
 
-        return $type->getName();
+        return $name;
     }
 }

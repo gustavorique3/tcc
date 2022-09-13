@@ -1,6 +1,6 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="{{ url('/admin') }}">Start Bootstrap</a>
+    <a class="navbar-brand" href="{{ url('/admin') }}">NOME DO SISTEMA</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,7 +12,7 @@
                     <span class="nav-link-text">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+            <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
                 <a class="nav-link" href="{{ url('/admin/charts') }}">
                     <i class="fa fa-fw fa-area-chart"></i>
                     <span class="nav-link-text">Charts</span>
@@ -23,7 +23,7 @@
                     <i class="fa fa-fw fa-table"></i>
                     <span class="nav-link-text">Tables</span>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cadastros">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-wrench"></i>
@@ -34,14 +34,17 @@
                         <a href="{{ url('/categorias') }}">Categorias</a>
                     </li>
                     <li>
-                        <a href="{{ url('/admin/cards') }}">Cards</a>
+                        <a href="{{ url('/clientes') }}">Clientes</a>
                     </li>
+                    <!-- <li>
+                        <a href="{{ url('/admin/cards') }}">Cards</a>
+                    </li> -->
                 </ul>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-file"></i>
-                    <span class="nav-link-text">Example Pages</span>
+                    <span class="nav-link-text">Páginas de Exemplo</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseExamplePages">
                     <li>
@@ -58,7 +61,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+            <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-sitemap"></i>
                     <span class="nav-link-text">Menu Levels</span>
@@ -88,7 +91,7 @@
                         </ul>
                     </li>
                 </ul>
-            </li>
+            </li> -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
                 <a class="nav-link" href="#">
                     <i class="fa fa-fw fa-link"></i>
@@ -195,7 +198,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                    <i class="fa fa-fw fa-sign-out"></i>Sair do sistema</a>
             </li>
         </ul>
     </div>

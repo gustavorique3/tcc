@@ -7,6 +7,7 @@ Route::get('/', function () {
 Route::get('/admin/{demopage?}', 'DemoController@demo')->name('demo');
 
 Route::resource('/categorias', 'Categorias\CategoriaController');
+Route::resource('/clientes', 'Clientes\ClienteController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
